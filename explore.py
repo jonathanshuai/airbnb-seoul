@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
-
 # Skeleton file for basic exploratory analysis
 
 import os
@@ -27,7 +21,8 @@ import hedgeplot as hplt
 df_list = []
 directory = "./s3_files/seoul/" 
 for filename in os.listdir(directory):
-  df_list.append(pd.read_csv(directory + filename))
+  if filename[-3:] == 'csv':
+    df_list.append(pd.read_csv(directory + filename))
 
 df = pd.concat(df_list)
 
@@ -70,4 +65,3 @@ hplt.show()
 
 # Check the trends for a single house
 # df.groupby('room_id').count().sort_values('reviews').tail()
-
